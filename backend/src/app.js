@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import authRoutes from "./routes/authRoutes.js";
+
 dotenv.config();
 
 const app = express();
@@ -10,6 +12,9 @@ const app = express();
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json()); // To parse JSON body
 app.use(express.urlencoded({ extended: true })); // To parse URL-encoded body
+
+// Routes
+app.use("/api/auth", authRoutes);
 
 // JSON parser error handler
 app.use((err, req, res, next) => {
